@@ -1,20 +1,266 @@
-<title>sanjana jha </title>
-<link rel="stylesheet" href="script.js">
-<link rel="stylesheet" href="style.css">
 
-<style>
-  body{background-color: black;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hey sanjana</title>
+  <style>
+    /* Base Styling */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: radial-gradient(circle, #000000, #222222);
+      color: white;
+      overflow: hidden;
+    }
 
-  }
-</style>
+    /* Neon Colors */
+    :root {
+      --neon-1: #ff00ff;
+      --neon-2: #00ffff;
+    }
 
-<h1 contenteditable data-heading="sanjana">
-  sanjana
-</h1>
+    /* Phone Structure */
+    .phone {
+      width: 360px;
+      height: 720px;
+      border-radius: 30px;
+      background: black;
+      position: relative;
+      border: 10px solid transparent;
+      background-clip: padding-box;
+      box-shadow: 0 0 20px var(--neon-1), 0 0 40px var(--neon-2);
+    }
 
-<p>it's me here........ </p>
-<a href="home.html"><svg style="color: red;  " xmlns="http://www.w3.org/2000/svg" width="100%" height="100" fill="currentColor" class="bi bi-postcard-heart" viewBox="0 0 16 16">
-  <path d="M8 4.5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7Zm3.5.878c1.482-1.42 4.795 1.392 0 4.622-4.795-3.23-1.482-6.043 0-4.622ZM2.5 5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Z"/>
-  <path fill-rule="evenodd" d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H2Z"/>
-</svg></a>
+    .phone::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      border-radius: 40px;
+      background: linear-gradient(45deg, var(--neon-1), var(--neon-2));
+      z-index: -1;
+    }
 
+    /* Phone Screen */
+    .screen {
+      position: absolute;
+      top: 5%;
+      left: 5%;
+      width: 90%;
+      height: 90%;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: inset 0 0 10px #000;
+      color: white;
+    }
+
+    .screen .wallpaper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      transition: background-image 0.5s ease;
+    }
+
+    /* Wallpaper for dark mode */
+    body.dark-mode .wallpaper {
+      background-image: url('download (3).jpg');
+    }
+
+    /* Wallpaper for light mode */
+    body.light-mode .wallpaper {
+      background-image: url('download (4).jpg');
+    }
+
+    /* Circular Watch */
+    .circle-watch {
+      position: absolute;
+      top: 25%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px;
+      height: 200px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 5px solid var(--neon-2);
+      border-radius: 50%;
+      box-shadow: 0 0 15px var(--neon-2), inset 0 0 10px var(--neon-1);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+
+    .numbers {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--neon-2);
+    }
+
+    .date {
+      font-size: 1.2rem;
+      margin: 5px 0;
+    }
+
+    .weather {
+      font-size: 0.9rem;
+      color: var(--neon-2);
+    }
+
+    /* App Icons Section */
+    .app-icons {
+      display: flex;
+      justify-content: space-around;
+      position: absolute;
+      bottom: 15%;
+      left: 10%;
+      width: 80%;
+    }
+
+    .app-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(45deg, var(--neon-1), var(--neon-2));
+      border-radius: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 10px var(--neon-1), 0 0 20px var(--neon-2);
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+
+    .app-icon:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px var(--neon-2), 0 0 30px var(--neon-1);
+    }
+
+    .app-icon img {
+      width: 70%;
+      height: 70%;
+    }
+
+    /* Toggle Button */
+    .toggle-mode {
+      position: absolute;
+      bottom: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 20px;
+      background: var(--neon-2);
+      color: black;
+      border: none;
+      border-radius: 20px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 10px var(--neon-2);
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+
+    .toggle-mode:hover {
+      background: var(--neon-1);
+      box-shadow: 0 0 15px var(--neon-1);
+    }
+  </style>
+</head>
+<body class="dark-mode">
+  <div class="phone">
+    <div class="screen">
+      <!-- Wallpaper -->
+      <div class="wallpaper"></div>
+
+      <!-- Circular Watch -->
+      <div class="circle-watch">
+        <div class="numbers" id="digitalClock">00:00:00</div>
+        <div class="date" id="currentDate">Loading date...</div>
+        <div class="weather" id="weatherInfo">Loading weather...</div>
+      </div>
+
+      <!-- App Icons --> 
+      
+        <a href="album2.html"><div class="app-icons">
+          <div class="app-icon">
+            <img   src="Gallery Icon Clipart Transparent PNG Hd, Gallery Logo Icon Design Template Vector, Logo Icons, Gallery Icons, Template Icons PNG Image For Free Download.jpg" alt="Me">
+          </div>
+  </a>
+        <a href="song.html"><div class="app-icon">
+        
+          <img src="How to add any Apple Music album to the Home screen of your iPhone or iPad — iDownloadBlog.jpg"  alt="Music">
+        </div>
+        </a> 
+        <a href="favourite.html"><div class="app-icon">
+          <img src="Kit De Pintura De Arte De Diamante DIY Com Padrão De Árvore Criativa, Diamante Redondo Completo, Arte De Mosaico, Adequado Para Iniciantes, Decoração De Parede Doméstica, Presente De Aniversário De Natal Halloween Açã.jpg" alt="Instagram">
+        </div>
+      </div></a>
+        
+
+      <!-- Toggle Mode Button -->
+      <button class="toggle-mode" id="toggleMode">SANJANA JHA</button> 
+    </div>
+  </div>
+
+  <script>
+    const toggleButton = document.getElementById('toggleMode');
+    const body = document.body;
+
+    toggleButton.addEventListener('click', () => {
+      body.classList.toggle('light-mode');
+      body.classList.toggle('dark-mode');
+
+      toggleButton.textContent = body.classList.contains('light-mode') 
+        ? 'Good Mornig' 
+        : 'Good Night';
+    });
+
+    // Function to update the digital clock
+    function updateClock() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('digitalClock').textContent = `${hours}:${minutes}:${seconds}`;
+    }
+
+    // Function to update the date
+    function updateDate() {
+      const now = new Date();
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const formattedDate = now.toLocaleDateString(undefined, options);
+      document.getElementById('currentDate').textContent = formattedDate;
+    }
+
+    // Function to fetch weather
+    async function fetchWeather() {
+      try {
+        const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=28.7041&longitude=77.1025&current_weather=true');
+        const data = await response.json();
+        const temperature = data.current_weather.temperature;
+        const condition = data.current_weather.weathercode_description || "Clear";
+        document.getElementById('weatherInfo').textContent = `Temp: ${temperature}°C, ${condition}`;
+      } catch (error) {
+        document.getElementById('weatherInfo').textContent = 'Unable to fetch weather';
+      }
+    }
+
+    // Update clock, date, and weather on load
+    updateClock();
+    updateDate();
+    fetchWeather();
+    setInterval(updateClock, 1000); // Update clock every second
+    setInterval(fetchWeather, 300000); // Update weather every 5 minutes
+  </script>
+</body>
+</html>
